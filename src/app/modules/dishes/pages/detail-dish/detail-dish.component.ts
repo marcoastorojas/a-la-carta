@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from 'src/app/modules/menu/services/menu.service';
 
 @Component({
   selector: 'app-detail-dish',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailDishComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(private menuService:MenuService) { }
 
   ngOnInit(): void {
   }
-
+  addDish(){
+    // this.menuService.addDish()
+  }
+  removeDish(){
+    //
+  }
 }
