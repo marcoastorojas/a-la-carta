@@ -1,5 +1,7 @@
 interface DishApp {
     name:string,
     image:string,
-    healtScore:number
+    healtScore:number,
+    itsOnTheMenu:boolean
 }
+export default DishApp

@@ -3,3 +3,4 @@ interface DishApi {
     image:string,
     healtScore:number
 }
+export default DishApi
