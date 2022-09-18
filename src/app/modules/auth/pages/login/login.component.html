@@ -1,10 +1,22 @@
-<form [formGroup]="userForm" autocomplete="off" (ngSubmit)="handleSubmit()">
-    <span>email</span>
-    <input placeholder="email" name="email" formControlName="email">
-    <span style="color: red;" *ngIf="showError('email')">este campo es requerido</span>
-    <br>
-    <span>password</span>
-    <input placeholder="pssword" name="password"  formControlName="password" type="password">
-    <span style="color: red;" *ngIf="showError('password')">este campo es requerido</span>
-    <button type="submit">enviar</button>
-</form>
+<div class="body">
+    <div class="login">
+        <form [formGroup]="userForm" autocomplete="off" (ngSubmit)="handleSubmit()">
+            <img src="../../../../../assets/img/programmer.png" alt="images">
+            <mat-form-field class="wide" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput autocomplete="off" formControlName="email">
+                <span style="color: red;" *ngIf="showError('email')">
+                    This field is required
+                </span>
+            </mat-form-field>
+            <mat-form-field class="wide" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput autocomplete="off" type="password" formControlName="password">
+                <span style="color: red;" *ngIf="showError('password')">
+                    This field is required
+                </span>
+            </mat-form-field>
+            <button [disabled]="isLoading" class="wide submit" mat-raised-button color="primary">LOGIN</button>
+        </form>
+    </div>
+</div>

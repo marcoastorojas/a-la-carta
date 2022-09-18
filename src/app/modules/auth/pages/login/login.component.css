@@ -1,0 +1,22 @@
+.body{
+    display: flex;
+    height: 100vh   ;
+    justify-content: center;
+    align-items: center;
+    background-color: #474747;
+}
+.wide{
+    width: 80%;
+}
+.submit{
+    padding: 5px 0;
+}
+
+.login{
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+img{
+    width: 50%;
+}

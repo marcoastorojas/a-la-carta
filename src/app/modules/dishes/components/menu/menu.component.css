@@ -1,0 +1,25 @@
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;   
+}
+.menu h1{
+    color: black;
+}
+.stadistic{
+    color: white;
+    position: absolute;
+    background-color: rgb(4, 187, 50);
+    right: 0;
+    top: 0;
+    padding: 5px;
+    z-index: 100;
+}
+.results{
+    width: 90%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
+    padding-bottom: 10px;
+}

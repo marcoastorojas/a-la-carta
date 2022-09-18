@@ -1,0 +1,10 @@
+.body{
+    height: 100vh;
+}
+
+.wide{
+    height: 85px;
+}
+.container{
+    padding: 0 20px;
+}

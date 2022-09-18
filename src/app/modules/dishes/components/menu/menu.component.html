@@ -1,0 +1,16 @@
+<div class="menu">
+    <h1>List Menu</h1>
+    <div class="stadistic">
+        <div><strong>total price:  </strong> ${{priceSummation}}</div>
+        <div><strong>time average: </strong> {{timeAverage}} min</div>
+        <div><strong>healt average:</strong> {{averageHealtScore}} points</div>
+    </div>
+    <div class="results" *ngIf="menu.length; else noitem ">
+        <app-card-menu *ngFor="let dish of menu" [dish]="dish"></app-card-menu>
+    </div>
+    <ng-template #noitem>
+        <div style="color: black;">
+            no items on menu
+        </div>
+    </ng-template>
+</div>

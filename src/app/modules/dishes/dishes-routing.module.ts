@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DishesComponent } from './dishes.component';
 import { DetailDishComponent } from './pages/detail-dish/detail-dish.component';
 import { ListDishesComponent } from './pages/list-dishes/list-dishes.component';
+import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 
 const routes: Routes = [{
   path: "",
@@ -10,6 +11,7 @@ const routes: Routes = [{
   children: [
     { path: "list", component: ListDishesComponent },
     { path: "list/:id", component: DetailDishComponent },
+    { path: "menu", component: MenuPageComponent },
     { path: "**", redirectTo: "list", pathMatch: "full" }
   ]
 }];

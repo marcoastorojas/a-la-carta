@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from 'src/app/modules/menu/services/menu.service';
+import DishApp from 'src/app/interfaces/DishApp';
+import { DishesService } from '../../services/dishes.service';
+
 
 @Component({
   selector: 'app-list-dishes',
@@ -8,15 +10,23 @@ import { MenuService } from 'src/app/modules/menu/services/menu.service';
 })
 export class ListDishesComponent implements OnInit {
 
-  constructor(private menuService: MenuService) { }
-
+  constructor(private dishesService: DishesService) { }
+  get list() {
+    return this.dishesService.listOfDishes
+  }
   ngOnInit(): void {
+
   }
 
-  addDish() {
-    // this.menuService.addDish()
+  addDishMenu(dish: DishApp) {
+    this.dishesService.addItemMenu(dish)
   }
-  removeDish() {
-    //
+  removeDishMenu(id: number) {
+    this.dishesService.deleteItemMenu(id)
+  }
+
+  searchDishes(query:string){
+    this.dishesService.searchDish(query)
+      .subscribe(console.log)
   }
 }

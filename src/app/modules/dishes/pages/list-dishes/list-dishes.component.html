@@ -1,3 +1,10 @@
 <app-dishes></app-dishes>
-<p>buscador</p>
-<p>list-dishes works!</p>
+
+<div class="grid">
+    <div class="menu">
+        <app-menu></app-menu>
+    </div>
+    <div class="results">
+        <app-card-dish *ngFor="let dish of list" [dish]="dish"></app-card-dish>
+    </div>
+</div>

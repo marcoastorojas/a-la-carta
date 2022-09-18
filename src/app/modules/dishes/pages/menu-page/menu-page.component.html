@@ -1,0 +1,23 @@
+<div class="menu">
+    <div class="container">
+        <div class="grid">
+            <div class="results">
+                <app-card-detail *ngFor="let dish of list" [dish]="dish"></app-card-detail>
+            </div>
+        </div>
+    </div>
+    <div class="stadistics">
+        <h2>Stadistic</h2>
+        <h3><strong>List of diets</strong></h3>
+        <div class="diets">
+            <div class="diet" *ngFor="let diet of listofDiets">
+                {{diet}}
+            </div>
+        </div>
+        <h3><strong>total Price: </strong>${{totalPrice}}</h3>
+        <br>
+        <h3><strong>HealScore Average: </strong>{{healtAverage}}</h3>
+        <br>
+        <h3><strong>time cooking Average: </strong>{{timeAverage}}</h3>
+    </div>
+</div>

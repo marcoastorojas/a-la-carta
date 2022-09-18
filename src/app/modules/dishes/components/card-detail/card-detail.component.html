@@ -1,0 +1,24 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>{{dish.title}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="dish.image" [alt]="dish.title">
+    <mat-card-content>
+        <p>
+            <strong>vegan: </strong> {{dish.vegan}}
+            <br>
+            <strong>glutenFree: </strong> {{dish.glutenFree}}
+            <br>
+            <strong>price per Serving: </strong> {{dish.pricePerServing }}
+            <br>
+            <strong>vegetarian: </strong> {{dish.vegetarian}}
+            <br>
+            <strong>sustainable: </strong> {{dish.sustainable}}
+            <br>
+        </p>
+        <mat-card-actions>
+            <button (click)="removeDishMenu(dish.id)" mat-button color="warn">remove of menu</button>
+            <button mat-button color="accent" [routerLink]="['/','dishes','list',dish.id]">Info</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

@@ -1,1 +1,22 @@
-<p>detail-dish works!</p>
+<div class="cardDetail" *ngIf="!loading">
+    <h1>{{detailDish.title}}</h1>
+    <img [src]="detailDish.image" [alt]="detailDish.title">
+    <div [innerHTML]="detailDish.summary"></div>
+    <h3><strong>List of diets</strong></h3>
+    <div class="diets">
+        <div class="diet" *ngFor="let diet of detailDish.diets">
+            {{diet}}
+        </div>
+    </div>
+    <p><strong>Time Cooking: </strong>{{detailDish.readyInMinutes}}</p>
+    <br>
+    <p><strong>Healt Score: </strong>{{detailDish.healthScore}}</p>
+    <br>
+    <p><strong>Price per Serving: </strong>{{detailDish.pricePerServing}}</p>
+    <div class="float">
+        <button mat-button (click)="removeDish()" color="warn" *ngIf="itsOnMeny">Remove of menu </button>
+        <button mat-button color="accent" (click)="addDish()"
+            *ngIf="!itsOnMeny && this.dishesService.listOfDishes.length">Add to menu</button>
+    </div>
+</div>
+<!-- <p>{{dataString}}</p> -->

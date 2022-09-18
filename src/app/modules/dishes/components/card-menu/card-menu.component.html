@@ -1,0 +1,16 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>{{dish.title|titleCard:20}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="dish.image" [alt]="dish.title">
+    <mat-card-content>
+        <p>
+            <strong>vegan: </strong> {{dish.vegan}}
+            <br>
+        </p>
+        <mat-card-actions>
+            <button (click)="removeDishMenu(dish.id)" mat-button color="warn">Eliminar</button>
+            <button mat-button color="accent" [routerLink]="['/','dishes','list',dish.id]">Info</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>
