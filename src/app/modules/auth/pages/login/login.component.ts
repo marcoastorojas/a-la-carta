@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router) { }
   userForm: FormGroup = this.fb.group({
-    email: ["", [Validators.required]],
-    password: ["", [Validators.required]]
+    email: ["challenge@alkemy.org", [Validators.required]],
+    password: ["react", [Validators.required]]
   })
 
 
