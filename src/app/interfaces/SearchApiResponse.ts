@@ -1,5 +1,11 @@
-interface DishApp {
-    itsOnTheMenu:             boolean;
+export interface SearchApiResponse {
+    results:      Result[];
+    offset:       number;
+    number:       number;
+    totalResults: number;
+}
+
+export interface Result {
     vegetarian:               boolean;
     vegan:                    boolean;
     glutenFree:               boolean;
@@ -34,6 +40,7 @@ interface DishApp {
     analyzedInstructions:     AnalyzedInstruction[];
     spoonacularSourceUrl:     string;
 }
+
 export interface AnalyzedInstruction {
     name:  string;
     steps: Step[];
@@ -70,4 +77,3 @@ export enum Gaps {
 export enum ImageType {
     Jpg = "jpg",
 }
-export default DishApp
