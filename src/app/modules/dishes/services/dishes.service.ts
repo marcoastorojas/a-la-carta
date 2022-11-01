@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs';
+import { catchError, map, of, tap } from 'rxjs';
 import DishApp from 'src/app/interfaces/DishApp';
 import { SearchApiResponse } from 'src/app/interfaces/SearchApiResponse';
 import { environment } from 'src/environments/environment';
@@ -10,17 +10,23 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class DishesService {
-  apiUrl = `${environment.baseUrl}/recipes/complexSearch?apiKey=${environment.api_key3}&addRecipeInformation=true`
+  apiUrl = `${environment.baseUrl}/recipes/complexSearch?apiKey=${environment.api_key1}&addRecipeInformation=true`
   constructor(private http: HttpClient) { }
   private _listOfDishes: DishApp[] = [];
   private _menu: DishApp[] = JSON.parse(localStorage.getItem("dishesMenu") || "[]")
+  getApiUrl(enviromentApiKey: string): string {
+    return `${environment.baseUrl}/recipes/complexSearch?apiKey=${enviromentApiKey}&addRecipeInformation=true`
+  }
   get menu(): DishApp[] { return this._menu }
   get listOfDishes(): DishApp[] { return this._listOfDishes }
 
   searchDish(query: string) {
     const url = `${this.apiUrl}&query=${query}`
-    return this.http.get<SearchApiResponse>(url)
+    return this.http.get<SearchApiResponse>(this.getApiUrl(environment.api_key1))
       .pipe(
+        catchError(data => {
+          return this.http.get<SearchApiResponse>(this.getApiUrl(environment.api_key2))
+        }),
         map(data => {
           return {
             ...data,
@@ -39,7 +45,7 @@ export class DishesService {
 
     this.updateList()
   }
-  addItemMenu(dish: DishApp):any {
+  addItemMenu(dish: DishApp): any {
     const veganItems = this.menu.filter(dish => dish.vegan).length
     const noVeganItems = this._menu.length - veganItems
     if (this._menu.length === 4) {

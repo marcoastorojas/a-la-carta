@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { catchError, of } from 'rxjs';
 import { DishDetail } from 'src/app/interfaces/DishDetail';
 import { environment } from 'src/environments/environment';
 import { DishesService } from '../../services/dishes.service';
@@ -19,7 +20,12 @@ export class DetailDishComponent implements OnInit {
   constructor(public dishesService: DishesService, private route: ActivatedRoute, private http: HttpClient) {
     this.route.params.subscribe(({ id }) => {
       
-      this.http.get<DishDetail>(`${environment.baseUrl}/recipes/${id}/information?apiKey=${environment.api_key3}`)
+      this.http.get<DishDetail>(`${environment.baseUrl}/recipes/${id}/information?apiKey=${environment.api_key1}`)
+        .pipe(
+          catchError((data)=>{
+            return this.http.get<DishDetail>(`${environment.baseUrl}/recipes/${id}/information?apiKey=${environment.api_key2}`)
+          })
+        )
         .subscribe({
           next: (data) => {
             this.detailDish = data
