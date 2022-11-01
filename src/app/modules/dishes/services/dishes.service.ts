@@ -10,21 +10,21 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class DishesService {
-  apiUrl = `${environment.baseUrl}/recipes/complexSearch?apiKey=${environment.api_key1}&addRecipeInformation=true`
   constructor(private http: HttpClient) { }
   private _listOfDishes: DishApp[] = [];
   private _menu: DishApp[] = JSON.parse(localStorage.getItem("dishesMenu") || "[]")
   getApiUrl(enviromentApiKey: string): string {
-    return `${environment.baseUrl}/recipes/complexSearch?apiKey=${enviromentApiKey}&addRecipeInformation=true`
+    return `https://api.spoonacular.com/recipes/complexSearch?apiKey=${enviromentApiKey}&addRecipeInformation=true`
   }
   get menu(): DishApp[] { return this._menu }
   get listOfDishes(): DishApp[] { return this._listOfDishes }
 
   searchDish(query: string) {
-    const url = `${this.apiUrl}&query=${query}`
-    return this.http.get<SearchApiResponse>(this.getApiUrl(environment.api_key1))
+    const url = `${this.getApiUrl("89975b415f604ae892240bcab3935a3b")}&query=${query}`
+    return this.http.get<SearchApiResponse>(url)
       .pipe(
         catchError(data => {
+          const urlprovitional = `${this.getApiUrl("837af218d058494eaa022a2317f83988")}&query=${query}`
           return this.http.get<SearchApiResponse>(this.getApiUrl(environment.api_key2))
         }),
         map(data => {

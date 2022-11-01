@@ -14,16 +14,19 @@ import { DishesService } from '../../services/dishes.service';
 export class DetailDishComponent implements OnInit {
   detailDish!: DishDetail
   loading = true
+  getApiUrl(enviromentApiKey: string,id:string): string {
+    return `https://api.spoonacular.com/recipes/${id}/information?apiKey=${enviromentApiKey}`
+  }
   get itsOnMeny() {
     return this.dishesService.listOfDishes.find((dish) => dish.id === this.detailDish.id)?.itsOnTheMenu
   }
   constructor(public dishesService: DishesService, private route: ActivatedRoute, private http: HttpClient) {
     this.route.params.subscribe(({ id }) => {
       
-      this.http.get<DishDetail>(`${environment.baseUrl}/recipes/${id}/information?apiKey=${environment.api_key1}`)
+      this.http.get<DishDetail>(this.getApiUrl("837af218d058494eaa022a2317f83988",id))
         .pipe(
           catchError((data)=>{
-            return this.http.get<DishDetail>(`${environment.baseUrl}/recipes/${id}/information?apiKey=${environment.api_key2}`)
+            return this.http.get<DishDetail>(this.getApiUrl("89975b415f604ae892240bcab3935a3b",id))
           })
         )
         .subscribe({
